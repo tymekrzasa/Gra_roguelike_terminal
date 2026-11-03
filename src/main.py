@@ -1,9 +1,13 @@
 from entity import Player
+from game_map import GameMap
 import os
+
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
+
 def main():
     player = Player(x=5, y=5)
+    game_map = GameMap(width=10, height=10)
 
     while True:
         clear_screen()
@@ -17,13 +21,17 @@ def main():
             print("wychodzenie z gry")
             break
         elif move == 'w':
-            player.move(0, 1)
+            if (game_map.is_inside(player.x, player.y - 1)):
+                player.move(0, -1)
         elif move == 'a':
-            player.move(-1, 0)
+            if (game_map.is_inside(player.x - 1, player.y)):
+                player.move(-1, 0)
         elif move == 's':
-            player.move(0, -1)
+            if (game_map.is_inside(player.x, player.y + 1)):
+                player.move(0, 1)
         elif move == 'd':
-            player.move(1, 0)
+            if (game_map.is_inside(player.x + 1, player.y)):
+                player.move(1, 0)
 
 if __name__ == "__main__":
     main()
