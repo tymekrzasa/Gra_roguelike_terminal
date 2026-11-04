@@ -1,4 +1,5 @@
 from entity import Player
+from entity import Enemy
 from game_map import GameMap
 import os
 
@@ -7,6 +8,7 @@ def clear_screen():
 
 def main():
     player = Player(x=5, y=5)
+    goblin = Enemy(x=2,y=2,char="G")
     game_map = GameMap(width=10, height=10)
 
     while True:

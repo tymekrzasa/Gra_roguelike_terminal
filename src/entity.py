@@ -1,10 +1,11 @@
-class Player:
-    def __init__(self, x:int, y:int):
+import random
+class Entity:
+    def __init__(self, x:int, y:int, char:str):
 
         self.x = x
         self.y = y
 
-        self.char = "*"
+        self.char = char
 
         self._hp = 100
 
@@ -12,3 +13,18 @@ class Player:
 
         self.x += dx
         self.y += dy
+
+class Player(Entity):
+    def __init__(self, x:int, y:int):
+        super().__init__(x,y, char = "*")
+
+class Enemy(Entity):
+    def __init__(self, x:int, y:int, char:str):
+            super().__init__(x, y, char)
+
+    def random_movement(self, game_map):
+        directions = [(1, 0),(0, 1),(0, 0),(-1, 0),(0, -1)]
+        dx, dy = random.choices(directions)
+
+        self.x += dx
+        self.y += dy 
