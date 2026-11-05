@@ -8,14 +8,16 @@ class GameMap:
 
         return 0 <= x < self.width and 0 <= y < self.height
 
-    def render(self, player):
+    def render(self, entities:list):
         for y in range(self.height):
             print("+———" * self.width + "+")
             row = "│"
             for x in range(self.width):
-                if(x == player.x and y == player.y):
-                    row += f" {player.char} │"
-                else:
-                    row += "   │"
+                char_to_draw = " "
+                for entity in entities:
+                    if(x == entity.x and y == entity.y):
+                        char_to_draw = entity.char
+                        break
+                row += f" {char_to_draw} │"
             print(row)
         print("+———" * self.width + "+")

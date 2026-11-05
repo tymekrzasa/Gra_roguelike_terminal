@@ -24,7 +24,7 @@ class Enemy(Entity):
 
     def random_movement(self, game_map):
         directions = [(1, 0),(0, 1),(0, 0),(-1, 0),(0, -1)]
-        dx, dy = random.choices(directions)
+        dx, dy = random.choice(directions)
 
-        self.x += dx
-        self.y += dy 
+        if(game_map.is_inside(self.x + dx, self.y +dy)):
+             self.move(dx, dy)
